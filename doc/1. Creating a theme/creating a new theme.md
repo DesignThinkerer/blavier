@@ -20,3 +20,17 @@ To create a new theme:
 A blank theme will appear in the Themes page:
 
 ![blank theme](image.png)
+
+In wordpress, the file style.css is used to provide metadata on the theme, using css comments.
+
+```css
+/*
+    Theme Name: Blavier
+    Author: DesignThinkerer
+    Version: 1.0.0
+*/
+```
+
+To add a thumbnail for the theme, add a `image.png` file in the root of the folder theme. 
+
+Next, activate the theme to use it.
