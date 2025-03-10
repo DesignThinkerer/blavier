@@ -1,4 +1,6 @@
 <?php
+get_header();
+
 if ( have_posts() ) :
     while ( have_posts() ) : the_post(); ?>
         <h2>
@@ -8,4 +10,6 @@ if ( have_posts() ) :
     <?php endwhile;
 else : ?>
     <p>No posts found.</p>
-<?php endif; ?>
+<?php endif;
+
+get_footer();
