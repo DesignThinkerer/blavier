@@ -7,12 +7,14 @@ $isSingle = get_query_var('isSingle', false);
     <?php wp_head() ?>
 </head>
 <body>
-<header>
+<header class="fixed">
   <nav>
     <?php if($isSingle) :?>
+        <a href="http://blavier.local/">
         <button class="circle transparent">
         <i>arrow_back</i>
         </button>
+        </a>
     <?php endif ?>
     <div class="max"></div>
     <button class="circle transparent">
@@ -24,3 +26,4 @@ $isSingle = get_query_var('isSingle', false);
     <h5 class="small-padding">Headline medium</h5>
   <?php endif ?>
 </header>
+<main>

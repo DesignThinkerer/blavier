@@ -9,8 +9,8 @@ function action_wp_enqueue_files(): void
 
     // Beercss
     wp_enqueue_style('beercss', '//cdn.jsdelivr.net/npm/beercss@3.9.7/dist/cdn/beer.min.css');
-    wp_enqueue_script('beercss-script', '//cdn.jsdelivr.net/npm/beercss@3.9.7/dist/cdn/beer.min.js', NULL, '3.9.7', true);
-    wp_enqueue_script('material-dynamic-colors', '//cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js', NULL, '1.1.2', true);
+    wp_enqueue_script_module('beercss-script', '//cdn.jsdelivr.net/npm/beercss@3.9.7/dist/cdn/beer.min.js', [], '3.9.7', true);
+    wp_enqueue_script_module('material-dynamic-colors', '//cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js', [], '1.1.2', true);
 
     // Typography
     wp_enqueue_style('open-props', get_theme_file_uri('/styles/typetura.css'));
