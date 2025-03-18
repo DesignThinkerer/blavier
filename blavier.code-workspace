@@ -1,0 +1,16 @@
+{
+    "folders": [
+        {
+            "name": "🏠 Project Root",
+            "path": "."
+        },
+        {
+            "name": "📚 Documentation",
+            "path": "doc"
+        },
+        {
+            "name": "🎨 WordPress Theme: Blavier",
+            "path": "wp-content/themes/blavier"
+        }
+    ]
+}
