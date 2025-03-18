@@ -1,7 +1,5 @@
 <?php
 
-add_action('wp_enqueue_scripts', 'action_wp_enqueue_files');
-
 function action_wp_enqueue_files(): void
 {
     // Open props
@@ -21,3 +19,13 @@ function action_wp_enqueue_files(): void
     // Main
     wp_enqueue_style('blavier_main_styles', get_theme_file_uri('/styles/main.css'));
 }
+
+add_action('wp_enqueue_scripts', 'action_wp_enqueue_files');
+
+
+function action_wp_features(): void
+{
+    add_theme_support('title-tag');
+}
+
+add_action('after_setup_theme','action_wp_features');

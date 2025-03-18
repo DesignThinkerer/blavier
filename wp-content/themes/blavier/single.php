@@ -1,7 +1,4 @@
 <?php
-
-set_query_var('isSingle', true);
-
 get_header();
 
 if ( have_posts() ) :
