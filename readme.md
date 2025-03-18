@@ -1,59 +1,20 @@
-I use this to avoid tracking unrelevant files (.gitignore is managed by ddev, so I'm ussing .git\info\exclude) :
+## About
 
-```txt title=".git\info\exclude"
-# git ls-files --others --exclude-from=.git/info/exclude
-# Lines that start with '#' are comments.
-# For a project mostly in C, the following would be a good set of
-# exclude patterns (uncomment them if you want to use them):
-# *.[oa]
-# *~
-# Wordpress - ignore core, configuration, examples, uploads and logs.
-# https://github.com/github/gitignore/blob/main/WordPress.gitignore
+This repo contains a custom theme made for the website blavier.be, as an exercice for the ifapme formation. 
 
-# Core
-#
-# Note: if you want to stage/commit WP core files
-# you can delete this whole section/until Configuration.
+## Documentation
 
-/wp-admin/
-/wp-content/index.php
-/wp-content/languages
-/wp-content/plugins/index.php
-/wp-content/themes/index.php
-/wp-includes/
-/index.php
-/license.txt
-/readme.html
-/wp-*.php
-/xmlrpc.php
+I document each steps of the conception, including the dev setup in the [doc](</doc/0. Getting Started/0. Setting up the dev environment.md>) folder. Once the project is finished, I will use docusaurus to make the doc easier to read.
 
-# Configuration
-wp-config.php
 
-# Example themes
-/wp-content/themes/twenty*/
 
-# Example plugin
-/wp-content/plugins/hello.php
+- [x] Use ddev for easier dev setup
+- [ ] Find a way to track the database with git
 
-# Uploads
-/wp-content/uploads/
+## Consignes
 
-# Log files
-*.log
-
-# htaccess
-/.htaccess
-
-# All plugins
-#
-# Note: If you wish to whitelist plugins,
-# uncomment the next line
-/wp-content/plugins
-
-# All themes
-#
-# Note: If you wish to whitelist themes,
-# uncomment the next line
-#/wp-content/themes
-```
+- [Exercice 01](https://monsieurparfait.notion.site/D-velopper-avec-WordPress-7e9aa5a917c5466e9e8b3ed441f0234c?pvs=97#18b248a2c09e808b8a1ad8da60295d29)
+- [Exercice 02](https://monsieurparfait.notion.site/D-velopper-avec-WordPress-7e9aa5a917c5466e9e8b3ed441f0234c?pvs=97#197248a2c09e80b3a0e0c2b90012045c)
+- [Exercice 03](https://monsieurparfait.notion.site/D-velopper-avec-WordPress-7e9aa5a917c5466e9e8b3ed441f0234c?pvs=97#19e248a2c09e80589525fa1bb93ac45b)
+- [Exercice 04](https://monsieurparfait.notion.site/D-velopper-avec-WordPress-7e9aa5a917c5466e9e8b3ed441f0234c?pvs=97#19e248a2c09e8074ae68d42e66d534b9)
+- [Pré-Examen](https://monsieurparfait.notion.site/D-velopper-avec-WordPress-7e9aa5a917c5466e9e8b3ed441f0234c?pvs=97#1ba248a2c09e80329fcee77a436fd503)
