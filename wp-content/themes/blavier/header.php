@@ -3,18 +3,20 @@
 <head>
     <?php wp_head() ?>
 </head>
-<body>
+<body  <?php body_class(); ?>>
 <header class="fixed">
-  <nav>
-    <a href="<?php echo site_url() ?>"><h1>BLAVIER</h1></a>
-    <div class="max"></div>
-    <ul>
-      <li><a href="<?php echo site_url('/a-propos') ?>">A propos</a></li>
-      <li><a href="<?php echo site_url('/privacy-policy') ?>">Privacy Policy</a></li>
-    </ul>
-    <button class="circle transparent">
-      <i>search</i>
-    </button>
-  </nav>
+    <nav>
+        <a href="<?php echo site_url() ?>"><h1>BLAVIER</h1></a>
+        <?php
+            wp_nav_menu(
+              [
+                  'theme_location' => 'main-header',
+                  'menu_class'     => '',
+                  'container'      => '',
+                  'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+              ]
+          );
+            ?>
+    </nav>
 </header>
 <main>

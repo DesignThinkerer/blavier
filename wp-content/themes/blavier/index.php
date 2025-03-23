@@ -1,6 +1,8 @@
 <?php
 get_header();
 
+echo get_theme_file_uri("/");
+
 if ( have_posts() ) :
     while ( have_posts() ) : the_post(); ?>
         <h2>
