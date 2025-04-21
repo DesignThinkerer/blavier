@@ -142,8 +142,65 @@
                 "source": "https://github.com/htmlburger/carbon-fields"
             },
             "install-path": "../htmlburger/carbon-fields"
+        },
+        {
+            "name": "php-cs-fixer/shim",
+            "version": "v3.73.1",
+            "version_normalized": "3.73.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHP-CS-Fixer/shim.git",
+                "reference": "6bcfe9ff734019315cf9c6ea4f43cbcd87d1cc82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/6bcfe9ff734019315cf9c6ea4f43cbcd87d1cc82",
+                "reference": "6bcfe9ff734019315cf9c6ea4f43cbcd87d1cc82",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-tokenizer": "*",
+                "php": "^7.4 || ^8.0"
+            },
+            "replace": {
+                "friendsofphp/php-cs-fixer": "self.version"
+            },
+            "suggest": {
+                "ext-dom": "For handling output formats in XML",
+                "ext-mbstring": "For handling non-UTF8 characters."
+            },
+            "time": "2025-03-19T23:42:33+00:00",
+            "bin": [
+                "php-cs-fixer",
+                "php-cs-fixer.phar"
+            ],
+            "type": "application",
+            "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Dariusz Rumiński",
+                    "email": "dariusz.ruminski@gmail.com"
+                }
+            ],
+            "description": "A tool to automatically fix PHP code style",
+            "support": {
+                "issues": "https://github.com/PHP-CS-Fixer/shim/issues",
+                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.73.1"
+            },
+            "install-path": "../php-cs-fixer/shim"
         }
     ],
     "dev": true,
-    "dev-package-names": []
+    "dev-package-names": [
+        "php-cs-fixer/shim"
+    ]
 }

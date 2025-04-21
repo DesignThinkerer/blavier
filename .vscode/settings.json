@@ -1,3 +1,4 @@
 {
-    "todo-tree.tree.showBadges": true
+    "todo-tree.tree.showBadges": true,
+    "intelephense.environment.phpVersion": "8.4"
 }

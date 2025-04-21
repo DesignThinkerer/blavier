@@ -1,7 +1,7 @@
 name: blavier
 type: wordpress
 docroot: ""
-php_version: "8.3"
+php_version: "8.4"
 webserver_type: nginx-fpm
 xdebug_enabled: false
 additional_hostnames: []
@@ -9,6 +9,9 @@ additional_fqdns: []
 database:
     type: mariadb
     version: "10.11"
+hooks:
+    post-start:
+        - exec: '[ ! -f wp-load.php ] && (curl -O https://wordpress.org/latest.tar.gz && tar -xzf latest.tar.gz --strip-components=1 && rm latest.tar.gz) || echo "WordPress core files already present, skipping download."'
 use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
@@ -282,13 +285,3 @@ default_container_timeout: "240"
 # Un-comment to emit the WP CLI version after ddev start.
 #  post-start:
 #    - exec: wp cli version
-
-# ---------------------------------------------------------------------------------------------------
-# The command bellow does a conditional check to verify if the WordPress core files are present, then:
-# curl -O https://wordpress.org/latest.tar.gz: Downloads the latest version of WordPress.
-# tar -xzf latest.tar.gz --strip-components=1: Extracts the contents of the tar file into the current directory, removing the top-level directory from the extracted files.
-# rm latest.tar.gz: Cleans up by removing the downloaded tar file.
-
-hooks:
-  post-start:
-    - exec: '[ ! -f wp-load.php ] && (curl -O https://wordpress.org/latest.tar.gz && tar -xzf latest.tar.gz --strip-components=1 && rm latest.tar.gz) || echo "WordPress core files already present, skipping download."'
