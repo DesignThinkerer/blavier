@@ -3,6 +3,7 @@
 @todo: use open props
 
 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans');
 
 @layer reset, theme, layout, components, utilities;
 
@@ -18,10 +19,39 @@
     --color-primary: hsl(210, 69%, 68%);
     --color-secondary: hsl(224, 23%, 16%);
     --color-tertiary: hsl(0, 0%, 100%);
-    --color-accent: color-mix(in srgb, var(--color-primary), var(--color-secondary) 90%);
+    --color-accent: 
+      color-mix(in srgb, 
+        var(--color-primary), 
+        var(--color-secondary) 90%
+      );
     --color-alert: hsl(0, 100%, 50%);
+    --transparency-percentage:20%;
+
+    --border:1px solid #dee2e6;
+
+    --font-size-1:1rem;
+    --font-size-2:1.25rem;
+    --font-size-3:1.5rem;
+    --font-size-4:2rem;
+    --font-size-5:2.5rem;
+    --font-size-6:3rem;
+    --font-size-7:4rem;
+    --font-size-8:5rem;
+    --font-size-9:6rem;
+    --font-size-10:7rem;
 
     --content-max-width: 1200px;
+    --content-padding:
+    max(
+      calc((100vw - var(--content-max-width))/2),
+      1rem
+    );
+  }
+
+  /* typography, colors, shadows, borders, etc. */
+  h1,h2,h3,h4,h5,h6{
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 100;
   }
 }
 
@@ -34,7 +64,7 @@
       "main"
       "footer";
     grid-template-rows: auto 1fr auto;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
   }
 
@@ -75,6 +105,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding-inline:var(--content-padding);
   
       &.menu-top-header-menu-container {
         max-width: 100%;
@@ -83,10 +114,10 @@
       }
   
       a {
-          padding: 1rem;
           color: white;
           display: inline-block;
           text-decoration: none;
+          margin:1rem;
       }
   
       li {
@@ -143,6 +174,119 @@
     h3{
       text-transform: uppercase;
     }
+  }
+
+  h4{
+    font-size: var(--font-size-2);
+  }
+
+  .hero{
+    container-type:inline-size;
+    min-height: 70vh;
+    h1{
+      font-size:var(--font-size-5);
+      color:var(--color-tertiary);
+      text-shadow: 12px 0px 24px rgba(0,0,0,0.5);
+      font-weight: 300;
+    }
+    background: url('https://www.blavier.be/wp-content/uploads/2025/01/blavier-home.jpg') center / cover no-repeat;
+
+    display: flex;
+    padding-inline: var(--content-padding);
+    article{
+      margin-left: auto;
+      width: 33cqw;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      color: var(--color-tertiary);
+      background-color: 
+      color-mix(
+        in srgb, 
+        var(--color-secondary), 
+        transparent var(--transparency-percentage)
+      );
+    }
+  }
+
+  .gallery{
+    margin-top:-3lh;
+    justify-content: center;
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    article{
+      background-color: var(--color-tertiary);
+      max-width: 30ch;
+      padding:1rem;
+      aspect-ratio: 1/1;
+      position: relative;
+      border:var(--border);
+      transition: scale 0.2s ease-in-out;
+      h4{
+        margin-top:0;
+        font-weight: bold;
+      }
+      &:hover{
+        scale:1.05;
+      }
+      >:link{
+        font-size: 0;
+        position:absolute;
+        inset:0;
+        &:after{
+          position: absolute;
+          bottom: 0;
+          right:0;
+          color:var(--color-tertiary);
+          display: inline-block;
+          text-align: center;
+          width: 1lh;
+          aspect-ratio: 1/1;
+          font-size: 1rem;
+          content:"+";
+          background-color: var(--color-primary);
+        }
+      }
+    }
+  }
+
+  .services{
+    background:url('https://www.blavier.be/wp-content/uploads/2021/10/blavier-home.jpg') center / cover no-repeat;
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap:3rem;
+    padding:3rem;
+    padding-inline: var(--content-padding);
+    article{
+      cursor:pointer;
+      transition: background-color 0.2s ease-in-out;
+      &:hover{--transparency-percentage: 0%;}
+      text-align: center;
+      text-wrap: balance;
+      padding: 50px 80px;
+      background-color: 
+      color-mix(
+        in srgb, 
+        var(--color-primary), 
+        transparent var(--transparency-percentage)
+        );
+        h2{
+          font-size: var(--font-size-3);
+          text-transform: uppercase;
+          color:var(--color-tertiary);
+        }
+    }
+  }
+
+  .cta-button{
+    display: block;
+    padding: 1rem;
+    background-color: var(--color-primary);
+    color: var(--color-tertiary);
+    text-decoration: none;
+    text-align: center;
+    border-radius: 0.5rem;
   }
 
   @media(width<990px){
