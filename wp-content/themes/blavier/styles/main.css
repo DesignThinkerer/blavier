@@ -211,9 +211,10 @@
 
   .gallery{
     margin-top:-3lh;
+    margin-bottom: 3lh;
     justify-content: center;
     display: flex;
-    padding: 1rem;
+    padding-inline: 1rem;
     gap: 1rem;
     article{
       background-color: var(--color-tertiary);
@@ -276,6 +277,57 @@
           text-transform: uppercase;
           color:var(--color-tertiary);
         }
+    }
+  }
+
+  .models{
+    color:var(--color-tertiary);
+    background-color: var(--color-secondary);
+    
+    h2{
+      text-align: center;
+      padding:1lh;
+    }
+    form{
+      *{appearance: none;}
+
+      display: flex;
+      flex-wrap: wrap;
+      gap:1ch;
+      justify-content: center;
+
+      select,input{
+        text-transform: uppercase;
+        background:
+          url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%2375aee6' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right center/8px 10px;
+        color:var(--color-tertiary);
+        border:0;
+        padding-right: 3ch;
+      }
+      fieldset{
+        padding:0;
+        border:0;
+      }
+      input{
+        field-sizing: content;
+      }
+      input, button{
+        background:unset;
+        color:var(--color-tertiary);
+        border:unset;
+      }
+      label,fieldset{
+        border-bottom: solid 1px var(--color-primary);
+      }
+      button{
+        background-color:var(--color-primary);
+        padding:1ch;
+      }
+    }
+
+    .cta-button{
+      background-color:var(--color-alert);
+      width: fit-content;
     }
   }
 

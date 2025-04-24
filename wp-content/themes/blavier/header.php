@@ -2,6 +2,7 @@
 <html <?php language_attributes(); ?>>
 <head>
 <?php wp_head() ?>
+<link href="https://www.blavier.be/wp-content/uploads/2021/03/favicon.png" rel="shortcut icon">
 </head>
 <body  <?php body_class(); ?>>
 <header>

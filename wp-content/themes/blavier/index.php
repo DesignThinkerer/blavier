@@ -125,7 +125,7 @@ get_header();
             <article>Maison 3</article>
         </li>
     </ul>
-    <a href="">Voir nos modèles d'inspiration</a>
+    <a href="" class="cta-button">Voir nos modèles d'inspiration</a>
 
     <figure style="
     background-color:rgb(32 37 51);
@@ -139,7 +139,7 @@ get_header();
         style="object-fit: contain;width:100%;"
         alt="Carte de la Belgique avec les agences Maisons Blavier">
         <figcaption>
-            <h2>Visitez une de nos 8 maisons témoins</h2>
+            <h4>Visitez une de nos 8 maisons témoins</h4>
             <p>Visiter une maison témoin Maisons Blavier, c’est l’occasion parfaite pour découvrir la qualité de nos constructions, vous projeter dans votre futur chez-vous. Profitez de cette visite pour évaluer nos matériaux, comparer les styles et obtenir des conseils personnalisés pour concrétiser votre projet en toute confiance.</p>
             <a href="">Voir les maisons</a>
         </figcaption>
