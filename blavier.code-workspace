@@ -58,6 +58,9 @@
         ]
     },
     "settings": {
-        "intelephense.environment.phpVersion": "8.4"
+        "intelephense.environment.phpVersion": "8.4",
+        "conventionalCommits.scopes": [
+            "Components"
+        ]
     }
 }
