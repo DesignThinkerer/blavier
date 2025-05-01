@@ -113,40 +113,68 @@ get_header();
             </fieldset>
         </form>
     </search>
-    <!-- Liste de maisons -->
-    <ul>
-        <li>
-            <article>Maison 1</article>
-        </li>
-        <li>
-            <article>Maison 2</article>
-        </li>
-        <li>
-            <article>Maison 3</article>
-        </li>
+    <ul class="models-list">
+        <?php 
+        foreach(
+            [
+                [
+                    "src" => "https://www.blavier.be/wp-content/uploads/2024/07/BL576_facad.jpg",
+                    "price" => "217.475 € HTVA",
+                    "rooms" => 3,
+                    "bathrooms" => 1,
+                    "alt" => "maison BL571"
+                ],
+                [
+                    "src" => "https://www.blavier.be/wp-content/uploads/2024/01/BL520B-front.jpg",
+                    "price" => "217.475 € HTVA",
+                    "rooms" => 3,
+                    "bathrooms" => 1,
+                    "alt" => "maison BL572"
+                ],
+                [
+                    "src" => "https://www.blavier.be/wp-content/uploads/2023/09/BL631B_front.jpg",
+                    "price" => "217.475 € HTVA",
+                    "rooms" => 3,
+                    "bathrooms" => 1,
+                    "alt" => "maison BL573"
+                ],
+                [
+                    "src" => "https://www.blavier.be/wp-content/uploads/2023/08/BL630_front.jpg",
+                    "price" => "217.475 € HTVA",
+                    "rooms" => 3,
+                    "bathrooms" => 1,
+                    "alt" => "maison BL574"
+                ],
+                [
+                    "src" => "https://www.blavier.be/wp-content/uploads/2023/08/BL629_back.jpg",
+                    "price" => "217.475 € HTVA",
+                    "rooms" => 3,
+                    "bathrooms" => 1,
+                    "alt" => "maison BL575"
+                ]
+            ]
+            as $model
+            ) : ?>
+            <li>
+                <a href="inspiration/<?php echo trim($model['alt'],'maison ')?>">
+                <article>
+                    <img src="<?php echo $model['src']; ?>" alt="<?php echo $model['alt']; ?>">
+                    <p><?php echo $model['price']; ?></p>
+                    <footer>
+                    <p><span><?php echo $model['rooms']; ?> 🛏️</span><span><?php echo $model['bathrooms']; ?> 🛁</span></p>
+                    <p><?php echo trim($model['alt'],'maison ')?></p>
+                    </footer>
+                </article>
+                </a>
+            </li>
+        <?php endforeach; ?>
     </ul>
     <a href="" class="cta-button">Voir nos modèles d'inspiration</a>
 
-    <figure style="
-    background-color:rgb(32 37 51);
-    display: grid;
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    gap:4rem;
-    padding-block:4rem;
-    color:var(--color-tertiary);
-    ">
-        <img src="https://www.blavier.be/wp-content/uploads/2025/02/carte-temoin_dec_2021.png" 
-        style="object-fit: contain;width:100%;"
-        alt="Carte de la Belgique avec les agences Maisons Blavier">
-        <figcaption>
-            <h4>Visitez une de nos 8 maisons témoins</h4>
-            <p>Visiter une maison témoin Maisons Blavier, c’est l’occasion parfaite pour découvrir la qualité de nos constructions, vous projeter dans votre futur chez-vous. Profitez de cette visite pour évaluer nos matériaux, comparer les styles et obtenir des conseils personnalisés pour concrétiser votre projet en toute confiance.</p>
-            <a href="">Voir les maisons</a>
-        </figcaption>
-    </figure>
+    <figure><img src="https://www.blavier.be/wp-content/uploads/2025/02/carte-temoin_dec_2021.png" style="object-fit: contain;width:100%;" alt="Carte de la Belgique avec les agences Maisons Blavier"><figcaption><h4>Visitez une de nos 8 maisons témoins</h4><p>Visiter une maison témoin Maisons Blavier, c’est l’occasion parfaite pour découvrir la qualité de nos constructions, vous projeter dans votre futur chez-vous. Profitez de cette visite pour évaluer nos matériaux, comparer les styles et obtenir des conseils personnalisés pour concrétiser votre projet en toute confiance.</p><a href="" class="cta-button">Voir les maisons</a></figcaption></figure>
 </section>
 
-<section>
+<section class="about">
   <header>
     <h2>
       Blavier, votre partenaire pour la construction<br>
@@ -156,7 +184,7 @@ get_header();
   </header>
 
   <p>
-    Vous envisagez de faire bâtir&nbsp;? Chez Maisons Blavier, vous avez frappé à la bonne porte ! Active partout en Belgique, notre entreprise de construction clé sur porte se targue de plus de vingt ans d’expérience. Nous prônons la qualité supérieure, des prix raisonnables, de la transparence et un excellent service clientèle. Nous réalisons exclusivement des projets de construction clé sur porte, sur mesure et adaptés à votre budget et vos préférences.
+    Vous envisagez de faire bâtir? Chez Maisons Blavier, vous avez frappé à la bonne porte ! Active partout en Belgique, notre entreprise de <strong>construction clé sur porte</strong> se targue de plus de vingt ans d’expérience. Nous prônons la qualité supérieure, des prix raisonnables, de la transparence et un excellent service clientèle. <strong>Nous réalisons exclusivement des projets de construction clé sur porte, sur mesure et adaptés à votre budget et vos préférences</strong>.
   </p>
 
   <p>
