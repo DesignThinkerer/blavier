@@ -12,11 +12,11 @@ function theme_register_assets(): void
     
 	// Register files
 	wp_register_style('theme_main_styles', get_theme_file_uri('/styles/main.css'), [], filemtime(get_theme_file_path('/styles/main.css')), 'all');
-	wp_register_style('theme_faq_styles', get_theme_file_uri('/styles/faq.css'), [], filemtime(get_theme_file_path('/styles/faq.css')), 'all');
+	// wp_register_style('theme_faq_styles', get_theme_file_uri('/styles/faq.css'), [], filemtime(get_theme_file_path('/styles/faq.css')), 'all');
 
 	// Enqueue conditionally
 	wp_enqueue_style('theme_main_styles');
-	if (is_page('faq')) wp_enqueue_style('theme_faq_styles');
+	// if (is_page('faq')) wp_enqueue_style('theme_faq_styles');
 }
 
 function theme_title_separator(): string{
