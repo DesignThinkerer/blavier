@@ -60,11 +60,7 @@
     "settings": {
         "intelephense.environment.phpVersion": "8.4",
         "conventionalCommits.scopes": [
-<<<<<<< HEAD
             "Component"
-=======
-            "Components"
->>>>>>> origin/dev
         ]
     }
 }
