@@ -64,19 +64,6 @@
     font-family: "Noto Sans", sans-serif;
     font-weight: 100;
   }
-
-  details{
-    --_active-bg-color:#db4;
-    --_active-color:#fff;
-    --_after-content-closed: "+";
-    --_after-content-open: "-";
-    --_bg-color: rgb(218,225,227);
-    --_border-radius: 5px;
-    --_content-padding: 1lh;
-    --_gap:.5lh;
-    --_hover-bg-color: #fe8;
-    --_hover-color: #000;
-  }
 }
 
 @layer layout {
