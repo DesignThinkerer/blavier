@@ -9,6 +9,7 @@
 
 @layer reset {
   /* consistent baseline across browsers */
+
 }
 
 @layer theme {
@@ -16,7 +17,7 @@
   /* design tokens variables for colors, spacing, typography,.. */
   :root {
     font-family: system-ui;
-
+    
     --color-primary: hsl(210, 69%, 68%);
     --color-secondary: hsl(224, 23%, 16%);
     --color-tertiary: hsl(0, 0%, 100%);
@@ -200,7 +201,7 @@
     background-color: var(--color-primary);
     color: var(--color-tertiary);
     text-align: center;
-
+    font-size: calc(1rem*3/4);
     img {
       height: 3lh;
     }
