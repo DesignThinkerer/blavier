@@ -1,7 +1,6 @@
 /* 
   @todo: use open props
   @todo: refactor css to be more DRY and atomic
-  @todo: 
 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans');
 
@@ -80,39 +79,36 @@
 }
 
 @layer layout {
-
   /* layout patterns like grids, flex utilities, spacing wrappers. */
   body {
     display: grid;
-    grid-template-areas:
-      "header"
-      "main"
-      "footer";
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 
+      [header secondary-nav] auto
+      [header primary-nav] auto
+      [main] 1fr
+      [footer] auto;
     min-height: 100vh;
     margin: 0;
   }
 
   header {
-    grid-area: header;
-
+    grid-row: header;
     nav {
-      position: relative;
-      max-width: var(--content-max-width);
+      &:nth-of-type(1) {
+        grid-row: secondary-nav;
+      }
+      &:nth-of-type(2) {
+        grid-row: primary-nav;
+      }
     }
-
-    position: sticky;
-    top: 0;
-    z-index: 1;
   }
 
   main {
-    isolation: isolate;
-    grid-area: main;
+    grid-row: main;
   }
 
   footer {
-    grid-area: footer;
+    grid-row: footer;
   }
 }
 
@@ -198,44 +194,75 @@
 
   /* Sections */
   header {
-    background-color: var(--color-primary);
-    color: var(--color-tertiary);
-    text-align: center;
+    display: contents;
     font-size: calc(1rem*3/4);
+
+    /* Logo */
     img {
       height: 3lh;
     }
 
     nav {
-      --hover-item-background: transparent;
-      margin: auto;
+      color: var(--color-tertiary);
       display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
       align-items: center;
       padding-inline: var(--content-padding);
 
-      &.menu-top-header-menu-container {
-        max-width: 100%;
+      /* Secondary nav */
+      &:nth-of-type(1){
+        text-align: center;
         background-color: var(--color-secondary);
-        justify-content: right;
+        ul{
+          justify-content: right;
+          flex: 1;
+          li{
+            display: inline-flex;
+            align-items: center;
+            &:not(.bg-alert,:has(+.bg-alert)):after {
+              content:"";
+              height:1lh;
+              width:1px;
+              margin-inline: -.5px;
+              background-color: var(--color-tertiary);
+            }
+          }
+        }
+      }
+
+      /* Primary nav */
+      &:nth-of-type(2){
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: var(--color-primary);
+        justify-content: center;
+        ul {
+          margin-trim: inline; /* Progressive enhancement: only work on safari for now */
+          margin-inline-start: auto;
+          justify-content: space-between;
+        }
+        li {
+          --_nav-link-hover-color: var(--color-secondary);
+          li {
+            --_nav-link-hover-color: var(--color-tertiairy);
+          }
+        }
       }
 
       a {
-        color: white;
+        text-align: center;
+        cursor:pointer;
+        color: currentColor;
         display: inline-block;
         text-decoration: none;
-        margin: var(--gap-1);
-      }
-
-      li {
-        &:hover {
-          color: var(--color-accent);
-          background-color: var(--hover-item-background);
+        padding: var(--gap-1);
+        &:not(nav>&){
+          flex: 1;
         }
-
-        &:has(ul)::after {
-          content: "▼";
-          margin-left: 1ch;
+        &:hover{
+          color:var(--_nav-link-hover-color);
+          background-color: var(--hover-item-background);
         }
       }
 
@@ -243,10 +270,23 @@
         list-style: none;
         display: flex;
         text-transform: uppercase;
-        gap: var(--gap-1);
         position: relative;
         margin: 0;
         padding: 0;
+
+        li:has(ul){
+          &:hover{
+            --_after-color:var(--_nav-link-hover-color);
+            >:has(+ul){
+              color:var(--_nav-link-hover-color);
+            }
+          }
+          &::after {
+            content: "▼";
+            margin-left: 1ch;
+            color:var(--_after-color);
+          }
+        }
 
         ul {
           --hover-item-background: var(--color-accent);
@@ -257,35 +297,48 @@
             display: block;
             position: absolute;
           }
-        }
 
-        nav:not(:first-of-type) & {
-          background-color: var(--color-primary);
+          li{
+            display: flex;
+          }
         }
       }
     }
 
     @media(width<990px) {
-      #menu-main-menu {
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-
-        &:focus {
-          background-color: var(--color-primary);
-          inset: 0;
-          position: fixed;
+      nav{
+        --content-padding: 0;
+        &:nth-of-type(1){
+          li{
+            flex:1;
+            &:not(.bg-alert,:has(+.bg-alert)){
+              display: none;
+            }
+          }
         }
-
-        &:not(:focus)>* {
-          display: none;
-        }
-
-        &:not(:focus):after {
-          content: "☰";
-          font-size: 2rem;
-          padding: 1ch;
+        &:nth-of-type(2){
+          >ul {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+    
+            &:focus {
+              background-color: var(--color-primary);
+              inset: 0;
+              position: fixed;
+            }
+    
+            &:not(:focus)>* {
+              display: none;
+            }
+    
+            &:not(:focus):after {
+              content: "☰";
+              font-size: 2rem;
+              padding: 1ch;
+            }
+          }
         }
       }
     }
@@ -581,7 +634,25 @@
 }
 
 @layer utilities {
+  /* html:after{
+    --_border-width:2pt;
+    z-index: 1000;
+    content:"";
+    inset:0;
+    position:fixed;
+    outline:solid var(--_border-width) magenta;
+    outline-offset: calc(var(--_border-width)*-1);
+    pointer-events: none;
+  } */
   .bg-alert {
     background-color: var(--color-alert);
+  }
+
+  [outline]{
+    border: solid fuchsia 2px;
+  }
+
+  [isolate] {
+    :has(>&)>*:not(&){display: none;}
   }
 }
