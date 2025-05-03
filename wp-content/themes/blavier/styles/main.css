@@ -4,6 +4,11 @@
 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans');
 
+/* Reset for wordpress */
+figure{
+  margin: 0;
+}
+
 @layer reset, theme, layout, components, utilities;
 
 @layer reset {
@@ -382,13 +387,19 @@
     padding-inline: var(--gap-1);
 
     article {
-      aspect-ratio: 1/1;
       background-color: var(--color-tertiary);
       border: var(--border);
       max-width: 30ch;
-      padding: var(--gap-1);
       position: relative;
       transition: scale 0.2s ease-in-out;
+
+      &:has(p,h4){
+        padding: var(--gap-1);
+      }
+      
+      >figure{
+        margin:0;
+      }
 
       h4 {
         font-weight: bold;

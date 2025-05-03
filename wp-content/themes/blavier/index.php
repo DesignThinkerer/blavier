@@ -28,42 +28,58 @@ get_header();
     ?>
 </section>
 <section class="gallery">
-    <?php
+<?php 
+    foreach(
+        [
+            [
+                "src" => "https://www.blavier.be/wp-content/uploads/2025/04/FR-Site-web-250-x-241-px.jpg",
+                "alt" => "Promotion Maisons Blavier",
+                "href" => "/conditions-batibouw-2025",
+            ],
+            [
+                "title" => "Visitez nos maisons témoins",
+                "text" => "Visitez une de nos 9 maisons témoins sur rendez-vous !",
+                "href" => "/maisons-temoins",
+            ],
+            [
+                "title" => "Découvrez nos modèles d'inspiration",
+                "text" => "Faites le plein d'idées pour votre future construction sur mesure",
+                "href" => "/inspiration",
+            ],
+            [
+                "title" => "Rencontrez-nous lors de nos événements",
+                "text" => "Découvrez nos prochains événements dans nos réalisations ou sur salon ici!",
+                "href" => "/evenements",
+            ]
+        ]
+        as $pinned
+        ) : ?>
+            <article>
+                <?php if(isset($pinned["src"],$pinned["alt"])): ?>
+                    <figure>
+                        <img src="<?= $pinned["src"]?>" alt="<?= $pinned["alt"]?>">
+                    </figure>
+                <?php endif; ?>
+                <?php if(isset($pinned["title"])): ?>
+                    <h4><?= $pinned["title"]; ?></h4>
+                <?php endif; ?>
+                <?php if(isset($pinned["text"])): ?>
+                    <p><?= $pinned["text"]; ?></p>
+                <?php endif; ?>
+                <a href="<?= $pinned["href"]; ?>">Voir plus</a>
+            </article>
+<?php endforeach; ?>
+</section>
+<section class="services">
+<?php
     if (have_posts()) : ?>
         <?php while (have_posts()): the_post(); ?>
             <article>
-                <?php if (has_post_thumbnail()) : ?>
-                    <figure>
-                        <?php the_post_thumbnail('medium', ['alt' => '']); ?>
-                        <figcaption><?php the_post_thumbnail_caption(); ?></figcaption>
-                    </figure>
-                <?php endif; ?>
-                <h4><?php the_title(); ?></h4>
-                <p><?php the_content("En voir plus"); ?></p>
-                <a href="<?php the_permalink() ?>">Voir plus</a>
-            </article>
+            <h2><?php the_title(); ?></h2>
+            <p><?php the_content("En voir plus"); ?></p>
+        </article>
         <?php endwhile; ?>
-    <?php else : ?>
-        <p>Pas d'articles.</p>
     <?php endif; ?>
-</section>
-<section class="services">
-    <article>
-        <h2>Une maison 100% sur mesure</h2>
-        <p>Votre maison, vos choix. Chez Maisons Blavier, nous respectons vos besoins et désir pour que votre construction vous ressemble à 100% !</p>
-    </article>
-    <article>
-        <h2>Un prix fixe durant la construction</h2>
-        <p>S'assurer de maitriser votre budget fait partie de nos priorités. Le coüt de votre projet est fixe durant toute la construction</p>
-    </article>
-    <article>
-        <h2>Un accompagnement de A à Z</h2>
-        <p>Une seule personne de contact pour la réalisation de votre projet de A Z afin de vous assurer un excellent suivi durant tout le projet.</p>
-    </article>
-    <article>
-        <h2>Plus de 30 ans d'expérience</h2>
-        <p>Profitez d'une expertise accrue dans la réalisation de maison individuelle grace å une équipe expérimentée.</p>
-    </article>
 </section>
 <section class="models">
     <h2>Inspirez-vous</h2>
