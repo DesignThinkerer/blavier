@@ -11,7 +11,6 @@ $link    = $args['link']    ?? get_permalink();
 
 $cta_meta = get_post_meta(get_the_ID(), 'cta_text', true);
 $cta      = $args['cta'] ?? ($cta_meta ? $cta_meta : __('Voir plus', 'blavier'));
-//additionnal classes
 $classes = $args['classes'] ?? '';
 ?>
 

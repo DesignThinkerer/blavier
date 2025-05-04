@@ -4,8 +4,6 @@
  *
  * @package Blavier
  */
-
- 
 $title   = $args['title']   ?? get_the_title();
 $content = $args['content'] ?? get_the_content();
 $image   = $args['image']   ?? get_the_post_thumbnail_url(get_the_ID(), 'large');
@@ -13,9 +11,6 @@ $link    = $args['link']    ?? get_permalink();
 $types   = $args['types']   ?? 'Aucun type';
 $regions = $args['regions'] ?? 'Aucune région';
 $prix    = $args['prix']    ?? 'Aucun prix';
-
-
-
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('project-card'); ?>>
