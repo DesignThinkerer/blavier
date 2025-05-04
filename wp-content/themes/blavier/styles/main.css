@@ -286,9 +286,9 @@ figure{
               color:var(--_nav-link-hover-color);
             }
           }
-          &::after {
+          >a::after {
+            margin-left:1ch;
             content: "▼";
-            margin-left: 1ch;
             color:var(--_after-color);
           }
         }
@@ -310,7 +310,7 @@ figure{
       }
     }
 
-    @media(width<990px) {
+    @media(width<900px) {
       nav{
         --content-padding: 0;
         &:nth-of-type(1){
