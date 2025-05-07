@@ -81,7 +81,11 @@ figure {
     font-weight: 100;
     text-wrap: balance;
   }
-
+  
+  h2{
+    font-size: var(--font-size-3);
+    font-weight: 600;
+  }
   details {
     --_active-bg-color: #db4;
     --_active-color: #fff;
@@ -601,6 +605,11 @@ figure {
         width: 100%;
       }
 
+      :link{
+        text-decoration: none;
+        color:inherit;
+      }
+
       article {
         width: 100%;
         transition: scale 0.2s ease-in-out;
@@ -753,6 +762,7 @@ figure {
 
     hr{
       color:var(--color-primary);
+      max-width: 45ch;
     }
   }
 
@@ -884,15 +894,4 @@ figure {
       display: none;
     }
   }
-}
-
-
-:where(
-  /* .hero, */
-  /* .gallery, */
-  /* .services, */
-  /* .models, */
-  .about
-){
-  display: none;
 }
