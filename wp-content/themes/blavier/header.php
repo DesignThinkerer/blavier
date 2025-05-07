@@ -19,6 +19,7 @@
 <nav class="primary">
         
 <a tabindex="1" href="<?php echo site_url() ?>"><img src="<?php echo get_theme_file_uri('/images/logo-blavier.png');?>" alt="<?php echo site_url() ?>"/></a>
+<!-- TODO: Fix the mobile nav -->
 <?php
         wp_nav_menu(
             [
