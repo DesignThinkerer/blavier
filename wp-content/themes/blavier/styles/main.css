@@ -247,6 +247,10 @@ figure {
       align-items: center;
       padding-inline: var(--content-padding);
 
+      [role="toggle"]{
+        display: none;
+      }
+
       /* Secondary nav */
       &:nth-of-type(1) {
         text-align: center;
@@ -359,6 +363,16 @@ figure {
       nav {
         --content-padding: 0;
 
+        [role="toggle"]{
+          display: initial;
+          cursor: pointer;
+          background-color: transparent;
+          border:unset;
+          color:currentColor;
+          font-size: 2rem;
+          padding: 1ch;
+        }
+
         &:nth-of-type(1) {
           li {
             flex: 1;
@@ -370,26 +384,67 @@ figure {
         }
 
         &:nth-of-type(2) {
-          >ul {
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            position: relative;
+          justify-content: space-between;
+          position: relative;
 
-            &:focus {
-              background-color: var(--color-primary);
-              inset: 0;
-              position: fixed;
-            }
+          /* Bug sur chrome */
+          /* details{
+            display: initial;
+            --_bg-color:transparent;
+            --_border-radius: 0;
 
-            &:not(:focus)>* {
-              display: none;
-            }
-
-            &:not(:focus):after {
+            summary:before{
               content: "☰";
               font-size: 2rem;
               padding: 1ch;
+            }
+          } */
+
+          [role="toggle"]:focus{
+              outline: 2px #F9F9F9 solid;
+              outline-offset: 0;
+              box-shadow: 0 0 0 4px #193146;
+              border-radius: 2pt;
+            /* &:before{
+              content: "☰";
+              font-size: 2rem;
+              padding: 1ch;
+            } */
+          }
+
+          >ul {
+            top:100%;
+            flex-direction: column;
+            position: absolute;
+            width:100%;
+            background-color: var(--color-primary);
+            
+            :not([role="toggle"]:focus)+&:not(:focus-within) {
+              clip: rect(0 0 0 0);
+              clip-path: inset(50%);
+              height: 1px;
+              overflow: hidden;
+              position: absolute;
+              white-space: nowrap;
+              width: 1px;
+            }
+
+            ul{
+              width:100%;
+              position: relative;
+
+            }
+
+            li{
+              position: relative;
+              display: flex;
+              flex-wrap: wrap;
+            }
+            :link{
+              margin-right:auto;
+            }
+            &:target {
+              display: flex;
             }
           }
         }
@@ -870,27 +925,34 @@ figure {
 }
 
 @layer utilities {
-
-  /* html:after{
-    --_border-width:2pt;
-    z-index: 1000;
-    content:"";
-    inset:0;
-    position:fixed;
-    outline:solid var(--_border-width) magenta;
-    outline-offset: calc(var(--_border-width)*-1);
-    pointer-events: none;
-  } */
   .bg-alert {
     background-color: var(--color-alert);
   }
 
+  .visually-hidden {
+    /* https://www.a11yproject.com/posts/how-to-hide-content/ */
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  /* For debugging */
   [outline] {
     border: solid fuchsia 2px;
   }
 
-  [isolate] {
-    :has(>&)>*:not(&) {
+  [onlychild] {
+    :has(~&),&~* {
+      display: none;
+    }
+  }
+
+  [single]{
+    :root:has(&) *:not(&,& *, :has(&)){
       display: none;
     }
   }

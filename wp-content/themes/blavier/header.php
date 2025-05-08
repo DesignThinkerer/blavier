@@ -18,8 +18,17 @@
     ?>
 <nav class="primary">
         
-<a tabindex="1" href="<?php echo site_url() ?>"><img src="<?php echo get_theme_file_uri('/images/logo-blavier.png');?>" alt="<?php echo site_url() ?>"/></a>
-<!-- TODO: Fix the mobile nav -->
+<a tabindex="1" href="/"><img src="<?php echo get_theme_file_uri('/images/logo-blavier.png');?>" alt="<?php echo site_url() ?>"/></a>
+
+<!-- bug sur chrome..
+<details>
+  <summary>
+    <span role="term" aria-details="menu-main-menu" class="visually-hidden">Afficher/Masquer le menu principal</span>
+  </summary>
+</details> -->
+
+<button  role="toggle" aria-details="menu-main-menu">☰</button>
+
 <?php
         wp_nav_menu(
             [
@@ -29,7 +38,7 @@
                 'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
             ]
         );
-    ?>
+?>
 </nav>
 </header>
 <main>
