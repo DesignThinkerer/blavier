@@ -319,7 +319,7 @@ figure {
           flex: 1;
         }
 
-        &:hover {
+        &:where(:hover,[class*="current"]>&) {
           color: var(--_nav-link-hover-color);
           background-color: var(--hover-item-background);
         }
@@ -369,6 +369,7 @@ figure {
 
     @media(width<900px) {
       nav {
+        --content-padding:0;
         [role="toggle"]{
           display: initial;
           cursor: pointer;
@@ -394,7 +395,7 @@ figure {
 
         &:nth-of-type(2) {
           justify-content: space-between;
-          position: relative;
+          
 
           /* Bug sur chrome */
           /* details{
@@ -423,6 +424,7 @@ figure {
 
           >ul {
             top:100%;
+            left: 0;
             flex-direction: column;
             position: absolute;
             width:100%;

@@ -8,7 +8,6 @@ add_action('carbon_fields_register_fields', function () {
     Container::make('theme_options', 'Option du thème')
         ->add_fields([
             Field::make('text', 'tagline', 'Tagline du site'),
-            // Repeater pour les membres de l'équipe
             Field::make('complex', 'team_members', 'Membres de l\'équipe')
                 ->add_fields([
                     Field::make('text', 'name', 'Nom'),
@@ -18,7 +17,7 @@ add_action('carbon_fields_register_fields', function () {
                 ])
         ]);
 
-    // Champs FAQ pour la page FAQ (qui est une page, pas un article)
+    // Champs FAQ pour la page FAQ
     Container::make('post_meta', 'FAQ Fields')
         ->where('post_type', '=', 'page')
         ->where('post_template', '=', 'page-faq.php')
@@ -72,6 +71,21 @@ add_action('carbon_fields_register_fields', function () {
                 })
                 ->set_required(true)
         ]);
+
+
+     // Groupe de champs pour les modèles d'inspiration
+    Container::make('post_meta', 'Informations supplémentaires pour inspiration')
+    ->where('post_type', '=', 'inspiration')
+    ->add_fields([
+        Field::make('text', 'price', 'Prix (€)')
+        ->set_attribute('type', 'number'),
+
+        Field::make('text', 'rooms', 'Nombre de chambres')
+        ->set_attribute('type', 'number'),
+
+        Field::make('text', 'bathrooms', 'Nombre de salles de bain')
+        ->set_attribute('type', 'number'),
+    ]);
 });
 
 add_action('after_setup_theme', 'crb_load');
