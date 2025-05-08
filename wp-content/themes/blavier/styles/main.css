@@ -48,7 +48,6 @@ figure {
 
     --content-max-width: 1200px;
     --content-padding: max(calc((100vw - var(--content-max-width))/2), 1rem);
-
     --gap-1: 1rem;
     --gap-2: 2rem;
     --gap-3: 3rem;
@@ -63,6 +62,12 @@ figure {
     /* Accessibility */
 
     --optimal-line-length: 60ch;
+  }
+
+  @media(width<900px) {
+    :root{
+      --content-padding: var(--gap-1);
+    }
   }
 
   /* typography, colors, shadows, borders, etc. */
@@ -262,6 +267,9 @@ figure {
 
           :link:hover{
             --_nav-link-hover-color: var(--color-primary);
+            .bg-alert>&{
+              --_nav-link-hover-color: var(--color-secondary);
+            }
           }
 
           li {
@@ -361,8 +369,6 @@ figure {
 
     @media(width<900px) {
       nav {
-        --content-padding: 0;
-
         [role="toggle"]{
           display: initial;
           cursor: pointer;
@@ -371,6 +377,9 @@ figure {
           color:currentColor;
           font-size: 2rem;
           padding: 1ch;
+          &:focus{
+            pointer-events: none;
+          }
         }
 
         &:nth-of-type(1) {
@@ -594,7 +603,8 @@ figure {
 
       background-color: color-mix(in srgb, var(--color-primary), transparent var(--transparency-percentage));
       cursor:pointer;
-      padding: 50px 80px;
+      padding-block: clamp(var(--gap-1), 4vw, var(--gap-4));
+      padding-inline: clamp(var(--gap-2), 6vw, var(--gap-4));
       text-align: center;
       text-wrap: balance;
       transition: background-color 0.2s ease-in-out;
@@ -653,6 +663,7 @@ figure {
     ul {
       list-style: none;
       display: grid;
+      padding: 0;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: var(--gap-1);
 
