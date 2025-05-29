@@ -9,12 +9,7 @@ function theme_support(): void
 
 function theme_register_assets(): void
 {
-    
-	// Register files
-	wp_register_style('theme_main_styles', get_theme_file_uri('/styles/main.css'), [], filemtime(get_theme_file_path('/styles/main.css')), 'all');
-	// wp_register_style('theme_faq_styles', get_theme_file_uri('/styles/faq.css'), [], filemtime(get_theme_file_path('/styles/faq.css')), 'all');
-
-	// Enqueue conditionally
+    wp_register_style('theme_main_styles', get_theme_file_uri('/styles/main.css'), [], filemtime(get_theme_file_path('/styles/main.css')), 'all');
 	wp_enqueue_style('theme_main_styles');
 	// if (is_page('faq')) wp_enqueue_style('theme_faq_styles');
 }
@@ -34,11 +29,7 @@ function theme_setup(){
     );
 }
 
-/**
- * Register a custom post type called "project".
- *
- * @see get_post_type_labels() for label keys.
- */
+// Modèle de projet
 function project_init() {
 	$labels = array(
 		'name'                  => _x( 'Projects', 'Post type general name', 'textdomain' ),
@@ -85,7 +76,6 @@ function project_init() {
 
 	register_post_type( 'project', $args );
 }
-
 
 function register_project_taxonomies() {
     $taxonomies = [
@@ -141,8 +131,91 @@ function register_project_taxonomies() {
 }
 
 add_action('init', 'Blavier\register_project_taxonomies');
-
 add_action( 'init', 'Blavier\project_init' );
+
+// Modèle d'inspiration
+
+function inspiration_init() {
+	$labels = array(
+		'name'                  => _x( 'Inspirations', 'Post type general name', 'textdomain' ),
+		'singular_name'         => _x( 'Inspiration', 'Post type singular name', 'textdomain' ),
+		'menu_name'             => _x( 'Inspirations', 'Admin Menu text', 'textdomain' ),
+		'name_admin_bar'        => _x( 'Inspiration', 'Add New on Toolbar', 'textdomain' ),
+		'add_new'               => __( 'Add New', 'textdomain' ),
+		'add_new_item'          => __( 'Add New Inspiration', 'textdomain' ),
+		'new_item'              => __( 'New Inspiration', 'textdomain' ),
+		'edit_item'             => __( 'Edit Inspiration', 'textdomain' ),
+		'view_item'             => __( 'View Inspiration', 'textdomain' ),
+		'all_items'             => __( 'All Inspirations', 'textdomain' ),
+		'search_items'          => __( 'Search Inspirations', 'textdomain' ),
+		'parent_item_colon'     => __( 'Parent Inspirations:', 'textdomain' ),
+		'not_found'             => __( 'No Inspirations found.', 'textdomain' ),
+		'not_found_in_trash'    => __( 'No Inspirations found in Trash.', 'textdomain' ),
+		'featured_image'        => _x( 'Inspiration Cover Image', 'Overrides the “Featured Image” phrase for this post type. Added in 4.3', 'textdomain' ),
+		'set_featured_image'    => _x( 'Set cover image', 'Overrides the “Set featured image” phrase for this post type. Added in 4.3', 'textdomain' ),
+		'remove_featured_image' => _x( 'Remove cover image', 'Overrides the “Remove featured image” phrase for this post type. Added in 4.3', 'textdomain' ),
+		'use_featured_image'    => _x( 'Use as cover image', 'Overrides the “Use as featured image” phrase for this post type. Added in 4.3', 'textdomain' ),
+		'archives'              => _x( 'Inspiration archives', 'The post type archive label used in nav menus. Default “Post Archives”. Added in 4.4', 'textdomain' ),
+		'insert_into_item'      => _x( 'Insert into Inspiration', 'Overrides the “Insert into post”/”Insert into page” phrase (used when inserting media into a post). Added in 4.4', 'textdomain' ),
+		'uploaded_to_this_item' => _x( 'Uploaded to this Inspiration', 'Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used when viewing media attached to a post). Added in 4.4', 'textdomain' ),
+		'filter_items_list'     => _x( 'Filter Inspirations list', 'Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4', 'textdomain' ),
+		'items_list_navigation' => _x( 'Inspirations list navigation', 'Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4', 'textdomain' ),
+		'items_list'            => _x( 'Inspirations list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'textdomain' ),
+	);
+
+	$args = array(
+		'labels'             => $labels,
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => true,
+		'rewrite'            => array( 'slug' => 'inspiration' ),
+		'capability_type'    => 'post',
+		'has_archive'        => true,
+		'hierarchical'       => false,
+		'menu_position'      => null,
+		'supports'           => array( 'title', 'thumbnail' ),
+		'taxonomies' => ['type_maison'],
+	);
+
+	register_post_type( 'inspiration', $args );
+}
+
+function register_type_maison_taxonomies() {
+    $taxonomies = [
+        'type_maison' => [
+            'post_type' => 'inspiration',
+            'args' => [
+                'labels' => [
+                    'name'              => 'Types de maisons',
+                    'singular_name'     => 'Type de maison',
+                    'search_items'      => 'Rechercher un type',
+                    'all_items'         => 'Tous les types',
+                    'edit_item'         => 'Modifier le type',
+                    'update_item'       => 'Mettre à jour',
+                    'add_new_item'      => 'Ajouter un nouveau type',
+                    'new_item_name'     => 'Nom du nouveau type',
+                    'menu_name'         => 'Type de maison',
+                ],
+                'hierarchical' => true,
+                'show_ui' => true,
+                'show_admin_column' => true,
+                'rewrite' => ['slug' => 'type-maison'],
+                'show_in_rest' => true,
+                // 'meta_box_cb' => false,
+            ],
+        ]
+    ];
+
+    foreach ($taxonomies as $taxonomy => $data) {
+        register_taxonomy($taxonomy, $data['post_type'], $data['args']);
+    }
+}
+
+add_action('init', 'Blavier\register_type_maison_taxonomies');
+add_action( 'init', 'Blavier\inspiration_init' );
+
 
 
 add_action('after_setup_theme','Blavier\theme_support');   

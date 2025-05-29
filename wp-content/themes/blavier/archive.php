@@ -3,7 +3,6 @@
 /**
  * Archive template pour l'affichage des projets.
  *
- * @package Blavier
  */
 
  function blavier_render_taxonomy_options($taxonomy, $selected = '') {

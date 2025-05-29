@@ -48,7 +48,6 @@ figure {
 
     --content-max-width: 1200px;
     --content-padding: max(calc((100vw - var(--content-max-width))/2), 1rem);
-
     --gap-1: 1rem;
     --gap-2: 2rem;
     --gap-3: 3rem;
@@ -63,6 +62,12 @@ figure {
     /* Accessibility */
 
     --optimal-line-length: 60ch;
+  }
+
+  @media(width<900px) {
+    :root{
+      --content-padding: var(--gap-1);
+    }
   }
 
   /* typography, colors, shadows, borders, etc. */
@@ -224,7 +229,6 @@ figure {
     }
   }
 
-
   header {
     /*
     TODO: Improve the sticky header by automatically hiding the top bar when scrolling down and showing it again when scrolling up. See this example: https://codepen.io/fcalderan/pen/LYKwyyd (currently not working on Firefox)
@@ -246,6 +250,10 @@ figure {
       align-items: center;
       padding-inline: var(--content-padding);
 
+      [role="toggle"]{
+        display: none;
+      }
+
       /* Secondary nav */
       &:nth-of-type(1) {
         text-align: center;
@@ -257,6 +265,9 @@ figure {
 
           :link:hover{
             --_nav-link-hover-color: var(--color-primary);
+            .bg-alert>&{
+              --_nav-link-hover-color: var(--color-secondary);
+            }
           }
 
           li {
@@ -306,7 +317,7 @@ figure {
           flex: 1;
         }
 
-        &:hover {
+        &:where(:hover,[class*="current"]>&) {
           color: var(--_nav-link-hover-color);
           background-color: var(--hover-item-background);
         }
@@ -356,7 +367,19 @@ figure {
 
     @media(width<900px) {
       nav {
-        --content-padding: 0;
+        --content-padding:0;
+        [role="toggle"]{
+          display: initial;
+          cursor: pointer;
+          background-color: transparent;
+          border:unset;
+          color:currentColor;
+          font-size: 2rem;
+          padding: 1ch;
+          &:focus{
+            pointer-events: none;
+          }
+        }
 
         &:nth-of-type(1) {
           li {
@@ -369,30 +392,83 @@ figure {
         }
 
         &:nth-of-type(2) {
-          >ul {
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            position: relative;
+          justify-content: space-between;
+          
 
-            &:focus {
-              background-color: var(--color-primary);
-              inset: 0;
-              position: fixed;
-            }
+          /* Bug sur chrome */
+          /* details{
+            display: initial;
+            --_bg-color:transparent;
+            --_border-radius: 0;
 
-            &:not(:focus)>* {
-              display: none;
-            }
-
-            &:not(:focus):after {
+            summary:before{
               content: "☰";
               font-size: 2rem;
               padding: 1ch;
             }
+          } */
+
+          [role="toggle"]:focus{
+              outline: 2px #F9F9F9 solid;
+              outline-offset: 0;
+              box-shadow: 0 0 0 4px #193146;
+              border-radius: 2pt;
+            /* &:before{
+              content: "☰";
+              font-size: 2rem;
+              padding: 1ch;
+            } */
+          }
+
+          >ul {
+            top:100%;
+            left: 0;
+            flex-direction: column;
+            position: absolute;
+            width:100%;
+            background-color: var(--color-primary);
+            
+            :not([role="toggle"]:focus)+&:not(:focus-within) {
+              /* clip: rect(0 0 0 0);
+              clip-path: inset(50%);
+              height: 1px;
+              overflow: hidden;
+              position: absolute;
+              white-space: nowrap;
+              width: 1px; */
+            }
+
+            ul{
+              width:100%;
+              position: relative;
+
+            }
+
+            li{
+              position: relative;
+              display: flex;
+              flex-wrap: wrap;
+            }
+            :link{
+              margin-right:auto;
+            }
+            &:target {
+              display: flex;
+            }
           }
         }
       }
+    }
+  }
+
+  [aria-label="Breadcrumb"]{
+    &, & *{
+      display: flex;
+      align-items: center;
+    }
+
+    li:not(:last-of-type):after{
+      content: ">>";
     }
   }
 
@@ -439,6 +515,34 @@ figure {
 
     .cta-button{
       margin-bottom: 3lh;
+    }
+  }
+
+  .title-header{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--color-primary);
+    h1{
+      margin:0;
+    }
+    em{
+      color:var(--color-tertiary);
+      font-style: normal;
+      font-weight: 700;
+    }
+    nav{
+      color:var(--color-tertiary);
+      a {
+        color:inherit;
+      }
+    }
+    +.models{
+      padding-top: var(--gap-1);
+      a{
+        color:inherit;
+      }
     }
   }
 
@@ -538,7 +642,8 @@ figure {
 
       background-color: color-mix(in srgb, var(--color-primary), transparent var(--transparency-percentage));
       cursor:pointer;
-      padding: 50px 80px;
+      padding-block: clamp(var(--gap-1), 4vw, var(--gap-4));
+      padding-inline: clamp(var(--gap-2), 6vw, var(--gap-4));
       text-align: center;
       text-wrap: balance;
       transition: background-color 0.2s ease-in-out;
@@ -597,6 +702,7 @@ figure {
     ul {
       list-style: none;
       display: grid;
+      padding: 0;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: var(--gap-1);
 
@@ -869,27 +975,34 @@ figure {
 }
 
 @layer utilities {
-
-  /* html:after{
-    --_border-width:2pt;
-    z-index: 1000;
-    content:"";
-    inset:0;
-    position:fixed;
-    outline:solid var(--_border-width) magenta;
-    outline-offset: calc(var(--_border-width)*-1);
-    pointer-events: none;
-  } */
   .bg-alert {
     background-color: var(--color-alert);
   }
 
+  .visually-hidden {
+    /* https://www.a11yproject.com/posts/how-to-hide-content/ */
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  /* For debugging */
   [outline] {
     border: solid fuchsia 2px;
   }
 
-  [isolate] {
-    :has(>&)>*:not(&) {
+  [onlychild] {
+    :has(~&),&~* {
+      display: none;
+    }
+  }
+
+  [single]{
+    :root:has(&) *:not(&,& *, :has(&)){
       display: none;
     }
   }
