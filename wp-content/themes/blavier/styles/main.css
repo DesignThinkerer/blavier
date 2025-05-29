@@ -228,7 +228,6 @@ figure {
     }
   }
 
-
   header {
     /*
     TODO: Improve the sticky header by automatically hiding the top bar when scrolling down and showing it again when scrolling up. See this example: https://codepen.io/fcalderan/pen/LYKwyyd (currently not working on Firefox)
@@ -431,13 +430,13 @@ figure {
             background-color: var(--color-primary);
             
             :not([role="toggle"]:focus)+&:not(:focus-within) {
-              clip: rect(0 0 0 0);
+              /* clip: rect(0 0 0 0);
               clip-path: inset(50%);
               height: 1px;
               overflow: hidden;
               position: absolute;
               white-space: nowrap;
-              width: 1px;
+              width: 1px; */
             }
 
             ul{
@@ -460,6 +459,17 @@ figure {
           }
         }
       }
+    }
+  }
+
+  [aria-label="Breadcrumb"]{
+    &, & *{
+      display: flex;
+      align-items: center;
+    }
+
+    li:not(:last-of-type):after{
+      content: ">>";
     }
   }
 
@@ -506,6 +516,34 @@ figure {
 
     .cta-button{
       margin-bottom: 3lh;
+    }
+  }
+
+  .title-header{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--color-primary);
+    h1{
+      margin:0;
+    }
+    em{
+      color:var(--color-tertiary);
+      font-style: normal;
+      font-weight: 700;
+    }
+    nav{
+      color:var(--color-tertiary);
+      a {
+        color:inherit;
+      }
+    }
+    +.models{
+      padding-top: var(--gap-1);
+      a{
+        color:inherit;
+      }
     }
   }
 

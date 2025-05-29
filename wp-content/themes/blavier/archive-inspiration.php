@@ -85,16 +85,18 @@ $catalogue_title = "Nos modèles <em>d'inspiration</em>";
 get_header();
 ?>
 
-<header class="title-header">
-    <h1><?php echo $catalogue_title; ?></h1>
-    <nav class="breadcrumbs">
-        <a href="/">Home</a><span class="current-page">Inspiration</span>
+<section class="title-header">
+    <h1><?= $catalogue_title ?></h1>
+    <nav aria-label="Breadcrumb">
+        <ol>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/inspiration">Inspiration</a>
+            </li>
+        </ol>
     </nav>
-</header>
-
-<section class="catalogue">
-    <!-- TODO -->
-    Demandez votre catalogue gratuit ici
 </section>
 
 <section class="models">
