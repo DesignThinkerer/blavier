@@ -21,7 +21,7 @@ figure {
   /* design tokens variables for colors, spacing, typography,.. */
   :root {
     font-family: system-ui;
-
+    
     --color-primary: hsl(210, 69%, 68%);
     --color-secondary: hsl(224, 23%, 16%);
     --color-tertiary: hsl(0, 0%, 100%);
@@ -86,11 +86,12 @@ figure {
     font-weight: 100;
     text-wrap: balance;
   }
-  
+ 
   h2{
     font-size: var(--font-size-3);
     font-weight: 600;
   }
+
   details {
     --_active-bg-color: #db4;
     --_active-color: #fff;
@@ -238,8 +239,6 @@ figure {
     */
 
     font-size: calc(1rem*3/4);
-
-    /* Logo */
     img {
       height: 3lh;
     }
